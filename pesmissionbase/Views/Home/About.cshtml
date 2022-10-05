@@ -1,0 +1,822 @@
+﻿                                                
+
+
+    <div class="modal fade" id="EditTreeNode" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ویرایش </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+
+                            <input type="hidden" id="Edit_NodeId" />
+                            <label for="basicInput">نام   </label>
+                            <input type="text" class="form-control" id="Edit_Name">
+                            <label for="basicInput"> لینک</label>
+                            <input type="text" class="form-control" id="Edit_Link">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-primary" onclick="EditTree()">اعمال تغییرات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <div class="modal fade" id="AddTreeNode" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">افزودن </h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                        <fieldset class="form-group">
+
+                              <input type="hidden" id="Parent_NodeId" />
+                               <input type="hidden" id="CROS" />
+                            <label for="basicInput">نام   </label>
+                            <input type="text" class="form-control" id="New_Name">
+                            <label for="basicInput"> لینک</label>
+                            <input type="text" class="form-control" id="New_Link">
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a class="btn btn-primary" onclick="AddTree()">اعمال تغییرات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>
+        tree
+    </h1>
+
+    <table id="tree">
+        <colgroup>
+            <col width="30px" />
+            <col width="50px" />
+            <col width="350px" />
+            <col width="50px" />
+            <col width="50px" />
+           
+        </colgroup>
+        <thead>
+            <tr>
+                <th></th>
+                <th>#</th>
+                <th></th>
+                <th>Id</th>
+                <th>Link</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+       
+            <tr>
+                <td class="alignCenter"></td>
+                <td></td>
+                <td></td>
+                <td><input name="input1" type="input" disabled="disabled" /></td>
+                <td><input name="input2" type="input" disabled="disabled" /></td>
+             
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    
+    <script src="https://wwwendt.de/tech/fancytree/lib/jquery.js"></script>
+
+  
+    <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+          rel="stylesheet" />
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+ 
+    <script src="//cdn.jsdelivr.net/npm/ui-contextmenu/jquery.ui-contextmenu.min.js"></script>
+
+    <link href="~/lib/skin-win8/ui.fancytree.css" rel="stylesheet" />
+     <script src="https://wwwendt.de/tech/fancytree/src/jquery.fancytree.js"></script>
+    <script src="https://wwwendt.de/tech/fancytree/src/jquery.fancytree.dnd5.js"></script>
+    <script src="https://wwwendt.de/tech/fancytree/src/jquery.fancytree.edit.js"></script>
+    <script src="https://wwwendt.de/tech/fancytree/src/jquery.fancytree.gridnav.js"></script>
+    <script src="https://wwwendt.de/tech/fancytree/src/jquery.fancytree.table.js"></script>
+
+
+
+    <style type="text/css">
+        .ui-menu {
+            width: 180px;
+            font-size: 63%;
+        }
+
+            .ui-menu kbd {
+                
+                float: right;
+            }
+       
+        td.alignRight {
+            text-align: right;
+        }
+
+        td.alignCenter {
+            text-align: center;
+        }
+
+        td input[type="input"] {
+            width: 40px;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+           var CLIPBOARD = null;
+           let gobal;
+           $(function() {
+        
+
+
+                let sort;
+                let counterSibling=0;
+                let counterChild=0;
+                let mainNode;
+                    $("#tree")
+                      .fancytree({
+                         checkbox: true,
+                         checkboxAutoHide: true,
+                         titlesTabbable: true, // Add all node titles to TAB chain
+                         quicksearch: true, // Jump to nodes when pressing first character
+                         // source: SOURCE,
+                         source: { url: "/Home/Privacy" },
+
+                         extensions: ["edit", "dnd5", "table", "gridnav"],
+
+                         dnd5: {
+                           preventVoidMoves: true,
+                           preventRecursion: true,
+                           autoExpandMS: 400,
+                           dragStart: function(node, data) {
+
+                             return true;
+                           },
+                           dragEnter: function(node, data) {
+                             // return ["before", "after"];
+
+                             return true;
+                           },
+                           dragDrop: function(node, data) {
+
+                                         data.otherNode.moveTo(node, data.hitMode);
+                   
+                                         if(data.hitMode== "over"){
+                                             var host=data.node.data.Id;
+                             
+                                             var changingnode=data.otherNode.data.Id;
+
+                                              var onlevelAfter=data.otherNode?.getPrevSibling()?.data.Id;
+
+                                             let  postData={
+
+                                                 'host':host,
+                                                 'changeNode':changingnode,
+                                                 'PLaceAfter':onlevelAfter,
+                                                  'hitmode':"over",
+                                             };
+                                             $.ajax({
+
+                                                 contentType: 'application/x-www-form-urlencoded',
+                                                 dataType: 'json',
+                                                 type: "POST",
+                                                 url: "About",
+                                                 data: postData,
+                                                 success: function(data) {
+            
+
+                                                 },
+                                                 error: function (request, status, error) {
+                                                     alert("error");
+                                                 }
+                                             });
+
+                                         }//hitmode=over
+                                         else if(data.hitMode== "before"){
+
+                                             var host=data.node.data.ParentId;
+                                             var onlevelBfore=data.node.data.Id;
+                                             var changingnode=data.otherNode.data.Id;
+                                             var onlevelAfter=node?.getPrevSibling()?.getPrevSibling()?.data.Id;
+                            
+                          
+
+                                             let  postData={
+
+                                                 'host':host,
+                                                 'changeNode':changingnode,
+                                                 'hitmode':"before",
+                                                 'PLaceAfter':onlevelAfter,
+                                                 'PlaceBefore':onlevelBfore
+                                             };
+
+                                               $.ajax({
+
+                                                 contentType: 'application/x-www-form-urlencoded',
+                                                 dataType: 'json',
+                                                 type: "POST",
+                                                 url: "About",
+                                                 data: postData,
+                                                 success: function(data) {
+            
+
+                                                 },
+                                                 error: function (request, status, error) {
+                                                     alert("error");
+                                                 }
+                                             });
+                                         }//hitmode=before
+                                         else if(data.hitMode== "after"){
+
+                                              var host=data.node.data.ParentId;
+                                              var onlevelAfter=data.node.data.Id;
+                                              var changingnode=data.otherNode.data.Id;
+                                              var onlevelBfore=node.getNextSibling()?.getNextSibling()?.data.Id;
+                                 
+                                              let  postData={
+
+                                                 'host':host,
+                                                 'changeNode':changingnode,
+                                                 'hitmode':"after",
+                                                 'PLaceAfter':onlevelAfter,
+                                                 'PlaceBefore':onlevelBfore
+                                             };
+
+                                               $.ajax({
+
+                                                 contentType: 'application/x-www-form-urlencoded',
+                                                 dataType: 'json',
+                                                 type: "POST",
+                                                 url: "About",
+                                                 data: postData,
+                                                 success: function(data) {
+            
+
+                                                 },
+                                                 error: function (request, status, error) {
+                                                     alert("error");
+                                                 }
+                                             });
+                             
+
+                                         }//hitmode=after
+                           },//dragDrop
+                         },//dnd5
+                         edit: {
+                           triggerStart: ["f2", "shift+click", "mac+enter"],
+                           close: function(event, data) {
+                             if (data.save && data.isNew) {
+                      
+                               $("#tree").trigger("nodeCommand", {
+                                 cmd: "addSibling",
+
+
+                               });
+                             }
+                           },
+                         },
+                         table: {
+                           indentation: 20,
+                           nodeColumnIdx: 2,
+                           checkboxColumnIdx: 0,
+                         },
+                         gridnav: {
+                           autofocusInput: false,
+                           handleCursorKeys: true,
+                         },
+
+                         lazyLoad: function(event, data) {
+                           data.result = { url: "../demo/ajax-sub2.json" };
+                         },
+                         createNode: function(event, data) {
+                           var node = data.node,
+                             $tdList = $(node.tr).find(">td");
+
+                  
+                           if (node.isFolder()) {
+                             $tdList
+                               .eq(2)
+                               .prop("colspan", 6)
+                               .nextAll()
+                               .remove();
+                           }
+                         },
+
+                         renderColumns: function(event, data) {
+
+                            if(sort=="rename"){}
+          
+
+                           
+                           if(sort=="remove"){
+                                 let NodeId=   data.node.data.Id;
+                                 let postData5={
+
+                                 'ParentId':parent,
+                                 'NewName':newNode,
+                                
+                                 };
+                                 $.ajax({
+
+                                    contentType: 'application/x-www-form-urlencoded',
+                                    dataType: 'json',
+                                    type: "POST",
+                                    url: "About3",
+                                    data: postData5,
+                                    success: function(_data) {
+                                     if(_data.isSucces==true){
+                                              alert("موفقیت امیز")
+                                       }
+                                       else{
+                                               alert(" فرزند دارید");
+                                               sort="";
+                                       }
+                                    },
+                                    error: function (request, status, error) {
+                                     alert("error");
+                                    }
+                                 });//ajax
+
+                           }//remove
+
+                           var node = data.node,
+                             $tdList = $(node.tr).find(">td");
+
+             
+                           $tdList.eq(1).text(node.getIndexHier());
+              
+                           $tdList
+                             .eq(3)
+                             .find("input")
+                             .val(node.data.Id);
+                           $tdList
+                             .eq(4)
+                             .find("input")
+                             .val(node.data.Link);
+
+                
+                         },//render colums
+                         modifyChild: function(event, data) {
+                           data.tree.info(event.type, data);
+                         },
+                       })
+                       .on("nodeCommand", function(event, data) {
+                 
+                         var refNode,
+                           moveMode,
+                   
+                           tree = $.ui.fancytree.getTree("#tree"),
+                           node = tree.getActiveNode();
+                           mainNode={...node}
+                           ;
+                         switch (data.cmd) {
+                           case "addChild":
+                           case "addSibling":
+                           case "indent":
+                           case "moveDown":
+                           case "moveUp":
+                           case "outdent":
+                           case "remove":
+                           case "rename":
+                           sort=data.cmd;
+                           var CRoss=false;
+
+                           if(sort=="remove"){
+                               let NodeId=  node.data.Id;
+                               let postData5={
+
+                                   'NodeId':NodeId,
+                              
+                               };
+
+
+                           $.ajax({
+
+                             contentType: 'application/x-www-form-urlencoded',
+                             dataType: 'json',
+                             type: "POST",
+                             url: "About4",
+                             data: postData5,
+                             success: function(_data) {
+
+                                 if(_data.isSucces==true){
+                                      alert("موفقیت امیز")
+                                      node.remove();
+                              
+                                 }
+                                 else{
+                                     alert("حذف ناموفق فرزند دارد");
+                                     return true; 
+                                 }
+                             },
+                            error: function (request, status, error) {
+
+                                    alert("error");
+                                  }
+                            });//ajax
+
+                       }//remove
+
+                       else if(sort=="rename"){
+                 
+                           ShowModalEditTreeNode(node.data.Id,node.title, node.data.Link  );
+             
+                       }//edit
+                       else if(sort=="addChild"){
+
+                           CRoss=false;
+                           ShowModalAddTreeNode("","",node.data.Id,CRoss);           
+                       }//add child
+                          else if(sort=="addSibling"){
+
+                              CRoss=true;
+                           ShowModalAddTreeNode("","",node.data.ParentId,true);           
+                       }//add sibling
+              
+
+
+                       else{
+
+
+                           tree.applyCommand(data.cmd, node);}
+                           
+                             break;
+                           case "cut":
+                             CLIPBOARD = { mode: data.cmd, data: node };
+                             break;
+                           case "copy":
+                             CLIPBOARD = {
+                               mode: data.cmd,
+                               data: node.toDict(true, function(dict, node) {
+                                 delete dict.key;
+                               }),
+                             };
+                             break;
+                           case "clear":
+                             CLIPBOARD = null;
+                             break;
+                           case "paste":
+                             if (CLIPBOARD.mode === "cut") {
+                               // refNode = node.getPrevSibling();
+                               CLIPBOARD.data.moveTo(node, "child");
+                               CLIPBOARD.data.setActive();
+                             } else if (CLIPBOARD.mode === "copy") {
+                               node.addChildren(
+                                 CLIPBOARD.data
+                               ).setActive();
+                             }
+                             break;
+                           default:
+                             alert("Unhandled command: " + data.cmd);
+                             return;
+                         }//switch
+                       })
+                       .on("keydown", function(e) {
+                         var cmd = null;
+
+                         // console.log(e.type, $.ui.fancytree.eventToString(e));
+                         switch ($.ui.fancytree.eventToString(e)) {
+                           case "ctrl+shift+n":
+                           case "meta+shift+n": // mac: cmd+shift+n
+                             cmd = "addChild";
+                             break;
+                           case "ctrl+c":
+                           case "meta+c": // mac
+                             cmd = "copy";
+                             break;
+                           case "ctrl+v":
+                           case "meta+v": // mac
+                             cmd = "paste";
+                             break;
+                           case "ctrl+x":
+                           case "meta+x": // mac
+                             cmd = "cut";
+                             break;
+                           case "ctrl+n":
+                           case "meta+n": // mac
+                             cmd = "addSibling";
+                             break;
+                           case "del":
+                           case "meta+backspace": // mac
+                             cmd = "remove";
+                             break;
+                           // case "f2":  // already triggered by ext-edit pluging
+                           //   cmd = "rename";
+                           //   break;
+                           case "ctrl+up":
+                           case "ctrl+shift+up": // mac
+                             cmd = "moveUp";
+                             break;
+                           case "ctrl+down":
+                           case "ctrl+shift+down": // mac
+                             cmd = "moveDown";
+                             break;
+                           case "ctrl+right":
+                           case "ctrl+shift+right": // mac
+                             cmd = "indent";
+                             break;
+                           case "ctrl+left":
+                           case "ctrl+shift+left": // mac
+                             cmd = "outdent";
+                         }
+                         if (cmd) {
+                           $(this).trigger("nodeCommand", { cmd: cmd });
+                           return false;
+                         }
+                       });
+
+            
+                     $("#tree").contextmenu({
+                       delegate: "span.fancytree-node",
+                       menu: [
+                         {
+                           title: "Edit <kbd>[F2]</kbd>",
+                           cmd: "rename",
+                           uiIcon: "ui-icon-pencil",
+                         },
+                         {
+                           title: "Delete <kbd>[Del]</kbd>",
+                           cmd: "remove",
+                           uiIcon: "ui-icon-trash",
+                         },
+                         { title: "----" },
+                         {
+                           title: "New sibling <kbd>[Ctrl+N]</kbd>",
+                           cmd: "addSibling",
+                           uiIcon: "ui-icon-plus",
+                         },
+                         {
+                           title: "New child <kbd>[Ctrl+Shift+N]</kbd>",
+                           cmd: "addChild",
+                           uiIcon: "ui-icon-arrowreturn-1-e",
+                         },
+                         { title: "----" },
+                         {
+                           title: "Cut <kbd>Ctrl+X</kbd>",
+                           cmd: "cut",
+                           uiIcon: "ui-icon-scissors",
+                         },
+                         {
+                           title: "Copy <kbd>Ctrl-C</kbd>",
+                           cmd: "copy",
+                           uiIcon: "ui-icon-copy",
+                         },
+                         {
+                           title: "Paste as child<kbd>Ctrl+V</kbd>",
+                           cmd: "paste",
+                           uiIcon: "ui-icon-clipboard",
+                           disabled: true,
+                         },
+                       ],
+                       beforeOpen: function(event, ui) {
+                         var node = $.ui.fancytree.getNode(ui.target);
+                         $("#tree").contextmenu(
+                           "enableEntry",
+                           "paste",
+                           !!CLIPBOARD
+                         );
+                         node.setActive();
+                       },
+                       select: function(event, ui) {
+                         var that = this;
+                 
+                         setTimeout(function() {
+                           $(that).trigger("nodeCommand", { cmd: ui.cmd });
+                         }, 100);
+                       },
+                     });
+
+                     console.log("end of ready");
+
+                     var theNode = $("#tree").fancytree("getTree");
+                     console.log("node", theNode);
+
+                 }); // end of ready
+
+           
+
+
+
+
+                    function EditTree() {
+
+                      console.log("edit tree" , $("#tree"));
+
+                      var node = $("#tree").fancytree("getActiveNode");
+            
+
+
+               
+                      var nodeId = $("#Edit_NodeId").val();
+                      var name = $("#Edit_Name").val();
+                      var link = $("#Edit_Link").val();
+                      var postData = {
+                                     'NodeId': nodeId,
+                                     'NewName': name,
+                                     'Nodetitle':link,
+                                       };
+
+
+                       $.ajax({
+                             contentType: 'application/x-www-form-urlencoded',
+                             dataType: 'json',
+                             type: "POST",
+                             url: "About2",
+                             data: postData,
+                             success: function (_data) {
+                                if( _data.isSucces){
+                                   node.setTitle(name);
+                                   node.data.Link = link;
+                                   $tdList = $(node.tr).find(">td");
+                                   $tdList.eq(1).text(node.getIndexHier());
+                                   $tdList
+                                     .eq(4)
+                                     .find("input")
+                                     .val(link);
+         
+                                }
+                                else{
+
+                                    alert(_data.Massage);
+                                }
+                    
+                      
+                             },
+                             error: function (request, status, error) {
+                                 alert("false");
+                             }
+                         });//ajax
+
+                         $('#EditTreeNode').modal('hide');
+
+                     } // end of EditTree
+
+
+
+
+
+                   function ShowModalEditTreeNode(NodeId, Name, Link,) {
+           
+                       $('#Edit_NodeId').val(NodeId)
+                         $('#Edit_Name').val(Name)
+                         $('#Edit_Link').val(Link)
+                         $('#EditTreeNode').modal('show');
+
+                     }
+
+
+                        function ShowModalAddTreeNode( Name, Link ,pid,CORS) {
+           
+                     $('#New_Name').val(Name);
+                         $('#New_Link').val(Link);
+                         $('#Parent_NodeId').val(pid);
+                          $('#CROS').val(CORS);
+                         $('#AddTreeNode').modal('show');
+
+                     }
+
+
+
+
+
+
+
+
+
+                   function AddTree() {
+
+                        console.log("edit tree" , $("#tree"));
+
+                        var node = $("#tree").fancytree("getActiveNode");
+            
+            
+
+               
+                        var CROSs= $("#CROS").val();
+                        var name = $("#New_Name").val();
+                        var link = $("#New_Link").val();
+                        var Parent=$("#Parent_NodeId").val();
+                        var postData = {
+                                  'NewName': name,
+                                  'ParentId':Parent,
+                                  'Nodetitle':link,
+                                 };
+
+
+                         $.ajax({
+                             contentType: 'application/x-www-form-urlencoded',
+                             dataType: 'json',
+                             type: "POST",
+                             url: "About3",
+                             data: postData,
+                             success: function (_data) {
+                                if( _data.isSucces){
+                                    let obj = {
+                                        Id : _data.id,
+                                        title : name,
+                                        Link : link,
+                                        Rank : 0
+                                    };
+                                    if(CROSs=="false"){
+                                    node.addChildren(obj);
+                                    }
+                                    else if(CROSs=="true"){
+                                        node.appendSibling(obj);
+
+                                    }
+                   
+         
+                                }
+                                else{
+
+                                    alert(_data.Massage);
+                                }
+                    
+                      
+                             },
+                             error: function (request, status, error) {
+                                 alert("false");
+                             }
+                         });
+
+                         $('#AddTreeNode').modal('hide');
+
+                     } // end of EditTree
+
+
+
+
+
+
+    </script>
+
+
+
+
+

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<pesmissionbase.Models.Dto.RoleListDto>
+
+@{
+    ViewData["Title"] = "roles";
+}
+
+<h1>roles</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Describtion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Describtion)
+            </td>
+            <td>
+                   @Html.ActionLink("addPErmission", "AddPermission", new {  id=item.Id,Controller="Accounts" })
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

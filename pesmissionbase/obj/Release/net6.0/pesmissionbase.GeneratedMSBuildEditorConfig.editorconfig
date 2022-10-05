@@ -1,0 +1,100 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = pesmissionbase
+build_property.RootNamespace = pesmissionbase
+build_property.ProjectDir = D:\PrograminApps\testDirectory\apiIdentity\pesmissionbase\pesmissionbase\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\PrograminApps\testDirectory\apiIdentity\pesmissionbase\pesmissionbase
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Accounts/AddUserRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQWRkVXNlclJvbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Accounts/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Accounts/Regester.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVnZXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Accounts/RolesPermission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUm9sZXNQZXJtaXNzaW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Accounts/UerRoles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcVWVyUm9sZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/AdminController1/addCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db250cm9sbGVyMVxhZGRDYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/AdminController1/addCategorys.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db250cm9sbGVyMVxhZGRDYXRlZ29yeXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/AdminController1/addNewUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db250cm9sbGVyMVxhZGROZXdVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/AdminController1/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db250cm9sbGVyMVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/AdminController1/roles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Db250cm9sbGVyMVxyb2xlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Role/CreateRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxDcmVhdGVSb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/test/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcdGVzdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/PrograminApps/testDirectory/apiIdentity/pesmissionbase/pesmissionbase/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-jmnki6wiow

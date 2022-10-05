@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "RolesPermission";
+}
+
+<h1>RolesPermission</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Role Name</td>
+              <td>Add Permission</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in  ViewBag.roles)
+        {
+        <tr>
+            <td>
+                @item
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

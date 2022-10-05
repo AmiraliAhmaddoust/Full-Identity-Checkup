@@ -1,0 +1,45 @@
+﻿@model pesmissionbase.Services.AddCategory.RequsestAddDto
+
+@{
+    ViewData["Title"] = "addCategorys";
+}
+
+<h1>addCategorys</h1>
+
+<h4>IAddCategory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="addCategorys">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+              <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="link" class="control-label"></label>
+                <input asp-for="link" class="form-control" />
+                <span asp-validation-for="link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParenetId" class="control-label"></label>
+                <input asp-for="ParenetId" class="form-control" />@*
+                میشه جای اینپوت از سلکت لیست استفاده مرد از کنترولر با ویو بگ پاس بدیم به ویو و اینجا استفاده کنیب*@م
+
+                <span asp-validation-for="ParenetId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
